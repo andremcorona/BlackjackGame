@@ -32,7 +32,6 @@ def dealer_turn(dealer_hand, deck):
         print("Dealer's hand value:", dealer_hand.value)
         # Dealer bust on any value above 21
         if dealer_hand.value > 21:
-            print("/nDealer has busted.")
             return True
     return False
 
@@ -87,20 +86,25 @@ def gameOfBJ(deck):
         if playerBust:
             print("\nYou have busted. You Lose.")
             gameOn = False
-        # 2. After players turn and they didn't bust, it is dealers turn
-        print("\nNow for the dealer...")
-        dealerBust = dealer_turn(dealer_hand, deck)
 
-        # 3. Determine the winner and end the game
-        if dealerBust and not playerBust:
-            print("\nYou have won! :)")
-            gameOn = False
-        elif player_hand.value > dealer_hand.value and player_hand.value < 22:
-            print("\nYou have won! :)")
-            gameOn = False
-        elif player_hand.value == dealer_hand.value:
-            print("\nIt's a push!")
-            gameOn = False
-        else:
-            print("\nDealer Wins :(")
-            gameOn = False
+        # 2. After players turn and they didn't bust, it is dealers turn
+        if playerBust == False:
+            print("\nNow for the dealer...")
+            dealerBust = dealer_turn(dealer_hand, deck)
+            if dealerBust:
+                print("\nDealer has busted.")
+                gameOn = False
+
+            # 3. Determine the winner and end the game
+            if dealerBust and not playerBust:
+                print("\nYou have won! :)")
+                gameOn = False
+            elif player_hand.value > dealer_hand.value and player_hand.value < 22:
+                print("\nYou have won! :)")
+                gameOn = False
+            elif player_hand.value == dealer_hand.value:
+                print("\nIt's a push!")
+                gameOn = False
+            else:
+                print("\nDealer Wins :(")
+                gameOn = False
