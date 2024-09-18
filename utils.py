@@ -34,12 +34,6 @@ def dealer_turn(dealer_hand, deck):
         if dealer_hand.value > 21:
             return True
     return False
-
-def checkBJ(hand):
-    if hand.value == 21:
-        return True
-    else:
-        return False
     
 def dealHand(deck, player_hand, dealer_hand):
     player_hand.add_card(deck.deal())
@@ -66,8 +60,8 @@ def gameOfBJ(deck):
     print("\nDealer's Up card: ", dealer_hand.cards[0])
 
     # Check for BJ
-    playerBJ = checkBJ(player_hand)
-    dealerBJ = checkBJ(dealer_hand)
+    playerBJ = player_hand.check_for_bj()
+    dealerBJ = dealer_hand.check_for_bj()
 
     # Only allow game loop if there is no BJ
     if playerBJ and not dealerBJ:

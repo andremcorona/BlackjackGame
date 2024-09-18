@@ -17,3 +17,9 @@ class Hand:
         while self.value > 21 and self.aces:
             self.value -= 10
             self.aces -= 1
+    
+    def check_for_bj(self):
+        if self.value == 21:
+            return True
+        else:
+            return False
